@@ -48,5 +48,6 @@ Route::get('/grafik', function() {
     // kembalikan view grafik
     return view('grafik', [
         'chartData' => $chartData,
+        'pendaftars' => \App\Models\Pendaftar::all(),
     ]);
 })->name('grafik');

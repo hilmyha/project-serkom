@@ -15,7 +15,7 @@
       </div>
     </div>
   </x-slot>
-  <div class="container">
+  <div class="container py-24">
     <h2 class="mb-8 text-5xl font-semibold tracking-tight text-gray-900">Program Beasiswa</h2>
     <div class="grid gap-6 lg:grid-cols-3">
       {{-- perulangan untuk data beasiswa dari database --}}

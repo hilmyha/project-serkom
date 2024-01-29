@@ -9,17 +9,15 @@
       </div>
     </div>
   </x-slot>
-  <div class="container">
-    <p></p>
-    <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-      <div class="flex justify-between">
-        <div>
-          <p class="text-base font-normal text-gray-500 dark:text-gray-400">Grafik pendaftar beasiswa</p>
-        </div>
-        
+  <div class="container py-24">
+    <div class="w-full h-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      <div>
+        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{ $pendaftars->count() }} person</h5>
+        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Pendaftar Beasiswa</p>
       </div>
       {{-- area untuk chart --}}
       <div id="area-chart"></div>
+      
     </div>
   </div>
 
@@ -59,13 +57,13 @@
         },
       },
       dataLabels: {
-        enabled: false,
+        enabled: true,
       },
       stroke: {
         width: 6,
       },
       grid: {
-        show: false,
+        show: true,
         strokeDashArray: 4,
         padding: {
           left: 2,
@@ -91,7 +89,7 @@
           },
         },
         axisBorder: {
-          show: false,
+          show: true,
         },
         axisTicks: {
           show: false,
