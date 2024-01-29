@@ -18,5 +18,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // Seed database dengan data beasiswa dan semester
+        $this->call([
+            BeasiswaSeeder::class,
+            SemesterSeeder::class,
+        ]);
     }
 }

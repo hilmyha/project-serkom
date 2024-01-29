@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Pendaftar;
 use App\Http\Requests\StorePendaftarRequest;
 use App\Http\Requests\UpdatePendaftarRequest;
+use App\Models\Beasiswa;
+use App\Models\Semester;
+use Illuminate\Http\Request;
 
 class PendaftarController extends Controller
 {
@@ -14,53 +17,39 @@ class PendaftarController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('daftar', [
+            'semesters' => Semester::all(),
+            'beasiswas' => Beasiswa::all(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePendaftarRequest $request)
+    public function store(Request $request)
     {
-        //
-    }
+        // validasi data
+        $validated = $request->validate([
+            'nama' => 'required',
+            'nim' => 'required | numeric | digits_between:8,8',
+            'nomor_hp' => 'required | numeric | digits_between:10,13',
+            'email' => 'required | email | email:rfc,dns',
+            'semester_id' => 'required',
+            'beasiswa_id' => 'required',
+            'ipk' => 'required',
+            'berkas' => 'file | mimes:pdf,jpg,png',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pendaftar $pendaftar)
-    {
-        //
-    }
+        // mengubah status menjadi "menunggu"
+        $validated['status'] = 'Belum diverifikasi';
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pendaftar $pendaftar)
-    {
-        //
-    }
+        // menyimpan berkas ke storage
+        $validated['berkas'] = $request->file('berkas')->storeAs('berkas', time() . '.' . $request->file('berkas')->extension());
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePendaftarRequest $request, Pendaftar $pendaftar)
-    {
-        //
-    }
+        // menyimpan data ke database
+        Pendaftar::create($validated);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pendaftar $pendaftar)
-    {
-        //
+        // mengembalikan view daftar
+        return redirect()->route('hasil')->with('success', 'Data berhasil disimpan');
     }
 }

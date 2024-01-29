@@ -22,7 +22,14 @@ class StorePendaftarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama' => 'required',
+            'nim' => 'required | numeric | digits_between:8,8',
+            'nomor_hp' => 'required | numeric | digits_between:10,13',
+            'email' => 'required | email | email:rfc,dns',
+            'semester_id' => 'required',
+            'beasiswa_id' => 'required',
+            'ipk' => 'required',
+            'berkas' => 'required | file | mimes:pdf,jpg,png',
         ];
     }
 }

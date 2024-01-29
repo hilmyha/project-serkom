@@ -21,6 +21,7 @@ class AppLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layout.app');
+        // mengembalikan view layouts.app
+        return view('layouts.app');
     }
 }

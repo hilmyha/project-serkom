@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('pendaftars', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('nim');
+            $table->string('nomor_hp');
+            $table->string('email');
+            $table->string('berkas');
+            $table->foreignId('semester_id');
+            $table->foreignId('beasiswa_id');
+            $table->string('ipk');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* buatkan komponen untuk navbar transparent */
+  .navbar{
+      @apply bg-white lg:bg-black/30 px-4 lg:px-6 py-3 backdrop-blur-sm;
+  }
+  .navbar a{
+      @apply lg:text-white;
+  }
+  .navbar .login-btn{
+      @apply text-white;
+  }
+
+  .navbar-scroll{
+      @apply bg-white shadow-md;
+  }
+  .navbar-scroll a{
+      @apply text-black;
+  }
+
+  .user-dropdown a{
+      @apply text-black;
+  }
+}
